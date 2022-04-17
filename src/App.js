@@ -8,13 +8,16 @@ const Login = loadable(() => import('./views/Login'))
 
 
 const App = () => (
-    <h1>Hello World!</h1>
     // <Router>
     //     <Switch>
     //         <Route path='login' component={Login}></Route>
 
     //     </Switch>
     // </Router>
+    <>
+    {/* <h1>hello</h1> */}
+    <Login />
+    </>
 )
 
 export default App
