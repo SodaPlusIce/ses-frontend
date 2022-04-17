@@ -1,6 +1,6 @@
 import React from 'react'
 import loadable from './utils/loadable'
-import { HashRouter as Router, Route,  Redirect } from 'react-router-dom'
+import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 import { Switch } from 'antd'
 
 

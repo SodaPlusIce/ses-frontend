@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Layout, Input, Form, Button, Divider, message, notification } from "antd";
+import { Layout, Input, Form, Divider, message, notification } from "antd";
 // import '@/style/view-style/login.scss'
 import { withRouter } from 'react-router'
 
@@ -10,18 +10,18 @@ class Login extends Component {
 
     enterLoading = () => {
         this.setState({
-            loading:true
+            loading: true
         })
     }
 
     handleSubmit = e => {
         e.preventDefault()
         this.props.form.validateFields((err, values) => {
-            if(!err) {
+            if (!err) {
                 // let { username, passwd} = values
-                
 
-                switch(values.username) {
+
+                switch (values.username) {
                     case 'admin':
                         values.auth = 0
                         break
@@ -63,7 +63,7 @@ class Login extends Component {
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Item className="item">
                                 {getFieldDecorator('username', {
-                                    rules: [{required: true, message: 'Please input username'}]
+                                    rules: [{ required: true, message: 'Please input username' }]
                                 })(
                                     <Input
                                         placeholder='Username'
