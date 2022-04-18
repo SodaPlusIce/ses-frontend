@@ -9,6 +9,7 @@ const AppView = (
     // <Provider store={store}>
     //     <App />
     // </Provider>
+    //test
     <App />
 )
 
