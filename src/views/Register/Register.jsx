@@ -115,11 +115,11 @@ export default class Login extends Component {
         })
     }
     componentDidMount() {
-        notification.open({
-            message: 'Welcome to Student course selection system!',
-            duration: null,
-            description: 'Please intput your username and password'
-        })
+        // notification.open({
+        //     message: 'Welcome to Student course selection system!',
+        //     duration: null,
+        //     description: 'Please intput your username and password'
+        // })
     }
 
     componentWillUnmount() {
@@ -132,7 +132,7 @@ export default class Login extends Component {
             <Layout className="login animated fadeIn">
                 <div className="model">
                     <div className="login-form">
-                        <h3>System</h3>
+                        <h3>注册</h3>
                         <Divider />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Item className="item">
@@ -148,12 +148,7 @@ export default class Login extends Component {
                                     prefix={<UserOutlined />}
                                 ></Input>
                             </Form.Item>
-                            <Form.Item
-                            // rules={[
-                            //     { required: true, message: 'Please input your password!', },
-                            //     // { type: 'password', warningOnly: true },
-                            //     { type: 'string', max: 10 }]}
-                            >
+                            <Form.Item>
                                 <Input.Password
                                     placeholder='password'
                                     prefix={<LockOutlined />}
@@ -167,14 +162,14 @@ export default class Login extends Component {
                                     // className='login-form-button'
                                     loading={this.state.loading}
                                 >
-                                    登录
+                                    确定
                                 </Button>
-                                <Link to="/register">
+                                <Link to="/">
                                     <Button
                                         className='register-form-button'
                                         loading={this.state.loading}
                                     >
-                                        注册
+                                        返回
                                     </Button>
                                 </Link>
                             </Form.Item>

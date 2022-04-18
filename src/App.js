@@ -1,25 +1,20 @@
 import React from 'react'
 import loadable from './utils/loadable'
-import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
-import { Switch, Button } from 'antd'
-
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 
 const Login = loadable(() => import('./views/Login'))
+const Register = loadable(() => import('./views/Register/Register'))
+
 
 
 const App = () => (
     //test it 
-    // <Router>
-    //     <Switch>
-    //         <Route path='login' component={Login}></Route>
-
-    //     </Switch>
-    // </Router>
-    <>
-        {/* <h1>hello</h1> */}
-        {/* <Button type="primary">666</Button> */}
-        <Login />
-    </>
+    <Router>
+        <Switch>
+            <Route path='/register' component={Register}></Route>
+            <Route path='/' component={Login}></Route>
+        </Switch>
+    </Router>
 )
 
 export default App
