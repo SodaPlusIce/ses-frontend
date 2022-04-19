@@ -8,7 +8,7 @@ import {
     TeamOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import '../../style/view-style/index.scss'
+import '@/style/view-style/index.scss'
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
