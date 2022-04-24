@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 
 const Login = loadable(() => import('./views/Login'))
 const Register = loadable(() => import('./views/Register/Register'))
+const NavBar = loadable(() => import('./views/Index'))
 
 
 
@@ -12,7 +13,8 @@ const App = () => (
     <Router>
         <Switch>
             <Route path='/register' component={Register}></Route>
-            <Route path='/' component={Login}></Route>
+            <Route path='/login' component={Login}></Route>
+            <Route path='/' component={NavBar}></Route>
         </Switch>
     </Router>
 )

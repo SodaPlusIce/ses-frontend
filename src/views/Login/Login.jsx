@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Layout, Input, Form, Button, Divider, message, notification } from "antd";
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import '../../style/view-style/login.scss'
+import '@/style/view-style/login.scss'
 import { withRouter } from 'react-router'
 import { Link } from "react-router-dom";
 
