@@ -1,13 +1,17 @@
 import React from 'react';
-import { Menu, Button } from 'antd';
-import { Layout, Breadcrumb } from 'antd';
+import { ReactNode, key,} from 'react';
+import { Menu, Button, Divider } from 'antd';
+import { Layout, Breadcrumb, Image } from 'antd';
 import {
     DesktopOutlined,
     PieChartOutlined,
+    ContainerOutlined,
+    MailOutlined,
+    AppstoreOutlined,
     FileOutlined,
     TeamOutlined,
     UserOutlined,
-} from '@ant-design/icons';
+} from '@ant-design/icons'; 
 import '@/style/view-style/index.scss'
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -19,6 +23,7 @@ function getItem(label, key, icon, children) {
         label,
     };
 }
+
 
 const items = [
     getItem('Option 1', '1', <PieChartOutlined />),
@@ -37,7 +42,7 @@ class NavBar extends React.Component {
         collapsed: false,
     };
     onCollapse = (collapsed) => {
-        console.log(collapsed);
+        // console.log(collapsed);
         this.setState({
             collapsed,
         });
@@ -52,7 +57,13 @@ class NavBar extends React.Component {
                 }}
             >
                 <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
-                    <div className="logo" />
+                    <div className='logo'>
+                        <img
+                            width={170}
+                            src="https://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/logo.png"
+                        />
+                    </div>
+                    <Divider></Divider>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
                 </Sider>
                 <Layout className="site-layout">
