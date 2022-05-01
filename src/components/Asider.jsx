@@ -16,9 +16,8 @@ function getItem(label, key, icon, children, type) {
 
 
 const items = [
-    getItem('获取文章列表list', 'listlist', <ReadOutlined />),
-    getItem('获取文章列表table', 'listtable', <ReadOutlined />),
-    getItem('文章编辑', 'edit', <EditOutlined />),
+    getItem('查看课表', 'listlist', <ReadOutlined />),
+    // getItem('文章编辑', 'edit', <EditOutlined />),
     getItem('修改资料', 'means', <DatabaseOutlined />),
 ];
 

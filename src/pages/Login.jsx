@@ -3,10 +3,10 @@ import { Form, Input, Button, message} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {Link, useNavigate} from 'react-router-dom'
 import './less/login.less'
-import logoImg from '../assets/logo.png'
+
 import { LoginApi } from '../request/api';
 
-
+const logoImg = "https://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/logo.png"
 export default function Login() {
 
     const navigate = useNavigate()
@@ -39,39 +39,43 @@ export default function Login() {
 
     return (
         <div className="login">
-            
-            <div className='login_box'>
-                <img src={logoImg} alt="" />
-                <Form
-                    name="basic"
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    autoComplete="off"
-                >
-                    <Form.Item
-                        name="username"
-                        
-                        rules={[{ required: true, message: 'Please input your username!' }]}
-                    >
-                        <Input placeholder="请输入用户名" prefix={<UserOutlined className="site-form-item-icon" />} size='large' />
-                    </Form.Item>
+            <div className="model">
+                <div className='login_box'>
+                    <div>
+                        <img src={logoImg} alt="" />
+                    </div>
 
-                    <Form.Item
-                        name="password"
-                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    <Form
+                        name="basic"
+                        initialValues={{ remember: true }}
+                        onFinish={onFinish}
+                        autoComplete="off"
                     >
-                        <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder="请输入密码" size='large'/>
-                    </Form.Item>
+                        <Form.Item
+                            name="username"
 
-                    <Form.Item>
-                        <Link to="/register">还没账户？立即注册</Link>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" block size='large'>
-                            登录
-                        </Button>
-                    </Form.Item>
-                </Form>
+                            rules={[{ required: true, message: 'Please input your username!' }]}
+                        >
+                            <Input placeholder="请输入用户名" prefix={<UserOutlined className="site-form-item-icon" />} size='large' />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="password"
+                            rules={[{ required: true, message: 'Please input your password!' }]}
+                        >
+                            <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder="请输入密码" size='large' />
+                        </Form.Item>
+
+                        <Form.Item>
+                            <Link to="/register">还没账户？立即注册</Link>
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" block size='large'>
+                                登录
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </div>
             </div>
         </div>
     )

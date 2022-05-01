@@ -3,7 +3,6 @@ import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom'
 import './less/login.less'
-import logoImg from '../assets/logo.png'
 import { RegisterApi } from '../request/api';
 
 
@@ -34,7 +33,7 @@ export default function Register() {
         <div className="login">
 
             <div className='login_box'>
-                <img src={logoImg} alt="" />
+                <img src="https://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/logo.png" alt="" />
                 <Form
                     name="basic"
                     initialValues={{ remember: true }}

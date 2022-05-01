@@ -1,5 +1,4 @@
 import React,{useState, useEffect} from "react";
-import logoImg from '../assets/logo.png'
 import { Menu, Dropdown, Space, Divider, message } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
@@ -50,7 +49,7 @@ export default function Header() {
 
     return(
         <header>
-            <img src={logoImg} alt="" className="logo" />
+            <span style={{background: "pink"}}><img src="https://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/logo.png" alt="" className="logo" /></span>
             <div className="right">
                 <Dropdown overlay={menu}>
                     <a onClick={e => e.preventDefault()} className="dropdown" >
