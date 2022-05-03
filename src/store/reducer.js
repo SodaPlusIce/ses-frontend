@@ -1,12 +1,7 @@
-import { MENU_TOGGLE } from './actionType'
-
-const defaultStore = {
-    menuToggle: false
+const defaultState = {
+    msg: "你好世界"
 }
 
-export default (state = defaultStore, action) => {
-    switch (action.type) {
-        case MENU_TOGGLE:
-            return { ...state, menuToggle: !state.menuToggle}
-    }
+export default (state = defaultState) => {
+    return state
 }
