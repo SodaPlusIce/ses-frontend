@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu } from 'antd';
-import { ReadOutlined, DatabaseOutlined } from '@ant-design/icons';
+import { ReadOutlined, DatabaseOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from "react-router-dom";
 
 
@@ -22,6 +22,7 @@ const items = [
     ],
     [//教师
         getItem('我的课程', 'teacher/list', <ReadOutlined />),
+        getItem('增加课程', 'teacher/addCourse', <PlusCircleOutlined />),
         getItem('修改资料', 'teacher/means', <DatabaseOutlined />),
     ],
     [//教务处
@@ -35,6 +36,7 @@ export default function Asider() {
     const location = useLocation()
     const navigate = useNavigate()
     const [defaultkey, setdefaultkey] = useState("")
+    // const auth=localStorage.getItem('auth');//获取用户类型，登录时已经本地存储 
 
     useEffect(() => {
         let path = location.pathname
@@ -56,7 +58,8 @@ export default function Asider() {
             selectedKeys={[defaultkey]}
             mode="inline"
             theme="dark"
-            items={items[1]}//0学生1教师2教务处
+            // items={items[auth]}//0学生1教师2教务处
+            items={items[2]}//调试用
         />
     );
 }

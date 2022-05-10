@@ -1,7 +1,7 @@
 import React from 'react'
-import { Form, Input, Button, message} from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './less/login.less'
 
 import { LoginApi } from '../request/api';
@@ -17,8 +17,8 @@ export default function Login() {
             userPassword: values.password,
         }).then(res => {
             console.log(res)
-            
-            if (res.errorCode === 0){
+
+            if (res.errorCode === 0) {
                 message.success(res.message)
                 //存储数据
                 // localStorage.setItem('avatar', res.data.avatar)
@@ -26,11 +26,13 @@ export default function Login() {
                 // localStorage.setItem('editable', res.data.editable)
                 // localStorage.setItem('player', res.data.player)
                 // localStorage.setItem('username', res.data.username)
+                // 根据res内容判断用户类型，localStorage存储
+                // ...
                 // 跳转
                 setTimeout(() => {
                     navigate('/')
-                },1500)
-            }else{
+                }, 1500)
+            } else {
                 message.error(res.message)
             }
         })

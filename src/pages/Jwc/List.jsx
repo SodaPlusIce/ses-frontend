@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import './less/listtable.less'
+import '../less/listtable.less'
 import { Table, Button, Space } from 'antd';
-import { ArticleListApi } from '../request/api';
 import monment from 'moment'
-import ClassInfo from './ClassInfo'
-
-// function MyTitle(props) {
-//     return (
-//         <div>
-//             <a href={
-//                 "http://codesohigh.com:8765/article/2035"+props.id
-//             } className='list_title' target="_blank" >{props.title}</a>
-//             <p style={{color: '#999'}}>{props.subtitle}</p>
-//         </div>
-//     )
-// }
+import ClassInfo from '../ClassInfo'
 
 export default function List() {
 
@@ -25,7 +13,7 @@ export default function List() {
             courseName: '软件工程',
             courseCapcity: '0/50',
             courseTeacher: '李四',
-            courseState: "待审核"
+            courseState: "已审核"
         }
     ])
     // 分页
@@ -97,13 +85,19 @@ export default function List() {
             render: text => <p>{text}</p>
         },
         {
+            title: '状态',
+            dataIndex: 'courseState',
+            key: 'courseState',
+            render: text => <p>{text}</p>
+        },
+        {
             title: '操作',
             key: 'action',
             render: text => {
                 return (
-                    <Space size="right">
-                        <Button type='primary' onClick={() => console.log(text.key)}>选课</Button>
-                        <Button type='danger' style={{ left: '15px' }} onClick={() => console.log(text.key)}>退选</Button>
+                    <Space size="right" style={{ top: '-5px' }}>
+                        <Button type='primary' style={{ left: '0px' }} onClick={() => console.log(text.key)}>通过审核</Button>
+                        <Button type='danger' style={{ left: '15px' }} onClick={() => console.log(text.key)}>删除</Button>
                         <ClassInfo></ClassInfo>
                     </Space >
                 )
