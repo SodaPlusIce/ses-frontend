@@ -3,6 +3,7 @@ import axios from 'axios'
 // 配置项
 const axiosOption = {
     baseURL: '/api',
+    // baseURL: '127.0.0.1:8081',
     timeout: 5000
 }
 

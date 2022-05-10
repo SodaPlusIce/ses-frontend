@@ -6,26 +6,26 @@ import './less/login.less'
 
 import { LoginApi } from '../request/api';
 
-const logoImg = "https://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/logo.png"
+const logoImg = "http://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/logo.png"
 export default function Login() {
 
     const navigate = useNavigate()
     const onFinish = (values) => {
-        console.log('Success:', values);
-
+        // console.log(values)
         LoginApi({
-            username: values.username,
-            password: values.password
+            userId: values.username,
+            userPassword: values.password,
         }).then(res => {
             console.log(res)
-            if(res.errCode === 0){
+            
+            if (res.errorCode === 0){
                 message.success(res.message)
                 //存储数据
-                localStorage.setItem('avatar', res.data.avatar)
-                localStorage.setItem('cms-token', res.data['cms-token'])
-                localStorage.setItem('editable', res.data.editable)
-                localStorage.setItem('player', res.data.player)
-                localStorage.setItem('username', res.data.username)
+                // localStorage.setItem('avatar', res.data.avatar)
+                // localStorage.setItem('cms-token', res.data['cms-token'])
+                // localStorage.setItem('editable', res.data.editable)
+                // localStorage.setItem('player', res.data.player)
+                // localStorage.setItem('username', res.data.username)
                 // 跳转
                 setTimeout(() => {
                     navigate('/')
@@ -35,15 +35,16 @@ export default function Login() {
             }
         })
     };
-
+    console.log(LoginApi({
+        userNumber: "s1",
+        userPassword: "123",
+    }))
 
     return (
         <div className="login">
             <div className="model">
                 <div className='login_box'>
-                    <div>
-                        <img src={logoImg} alt="" />
-                    </div>
+                    <img src={logoImg} alt="" />
 
                     <Form
                         name="basic"
