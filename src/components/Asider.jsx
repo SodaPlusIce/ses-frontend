@@ -1,7 +1,7 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Menu } from 'antd';
 import { ReadOutlined, DatabaseOutlined } from '@ant-design/icons';
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 function getItem(label, key, icon, children, type) {
@@ -16,9 +16,18 @@ function getItem(label, key, icon, children, type) {
 
 
 const items = [
-    getItem('查看可选课程', 'list', <ReadOutlined />),
-    // getItem('文章编辑', 'edit', <EditOutlined />),
-    getItem('修改资料', 'means', <DatabaseOutlined />),
+    [//学生
+        getItem('查看可选课程', 'list', <ReadOutlined />),
+        getItem('修改资料', 'means', <DatabaseOutlined />),
+    ],
+    [//教师
+        getItem('我的课程', 'teacher/list', <ReadOutlined />),
+        getItem('修改资料', 'teacher/means', <DatabaseOutlined />),
+    ],
+    [//教务处
+        getItem('所有课程信息', 'jwc/list', <ReadOutlined />),
+        getItem('修改资料', 'jwc/means', <DatabaseOutlined />),
+    ]
 ];
 
 
@@ -27,14 +36,14 @@ export default function Asider() {
     const navigate = useNavigate()
     const [defaultkey, setdefaultkey] = useState("")
 
-    useEffect(()=>{
+    useEffect(() => {
         let path = location.pathname
         setdefaultkey(path.split('/')[1])
-    },[])
-    
+    }, [])
+
     const onClick = (e) => {
         setdefaultkey(e.key)
-        navigate('/'+e.key)
+        navigate('/' + e.key)
     };
 
     return (
@@ -47,7 +56,7 @@ export default function Asider() {
             selectedKeys={[defaultkey]}
             mode="inline"
             theme="dark"
-            items={items}
+            items={items[1]}//0学生1教师2教务处
         />
     );
 }

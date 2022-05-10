@@ -12,10 +12,17 @@ const BaseRouter = () => (
         <Routes>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
-            <Route path='/' element={<App/>}>
+            <Route path='/' element={<App />}>
                 <Route path='/list' element={<List />} />
                 <Route path='/means' element={<Means />} />
-                <Route path='/edit' element={<Edit />} />
+            </Route>
+            <Route path='/teacher' element={<App />}>
+                <Route path='/teacher/list' element={<List />} />
+                <Route path='/teacher/means' element={<Means />} />
+            </Route>
+            <Route path='/jwc' element={<App />}>
+                <Route path='/jwc/list' element={<List />} />
+                <Route path='/jwc/means' element={<Means />} />
             </Route>
         </Routes>
     </Router>

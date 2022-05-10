@@ -7,9 +7,9 @@ import Asider from "./components/Asider";
 import Bread from "./components/Bread"
 
 export default function App() {
-    return(
+    return (
         <div id="app">
-            <Header/>
+            <Header />
             <div className="container">
                 <Asider />
                 <div className="container_box">
@@ -19,7 +19,7 @@ export default function App() {
                     </div>
                 </div>
             </div>
-            <footer>东南大学</footer>
+            <footer>Respect Copyright © seu</footer>
         </div>
     )
 }

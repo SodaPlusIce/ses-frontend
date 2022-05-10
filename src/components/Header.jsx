@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, Dropdown, Space, Divider, message } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
@@ -11,21 +11,21 @@ export default function Header() {
     const [avatar, setAvatar] = useState(defaultAvatar)
     const [username, setUsername] = useState('游客')
 
-    useEffect(()=>{
+    useEffect(() => {
         let username1 = localStorage.getItem('username')
-        let avatar1 = 'http://47.93.114.103:6688/'+localStorage.getItem('avatar')
-        if(username1){
+        let avatar1 = 'http://47.93.114.103:6688/' + localStorage.getItem('avatar')
+        if (username1) {
             setUsername(username1)
         }
-        if(avatar1){
+        if (avatar1) {
             setAvatar(avatar1)
         }
-    },[])
+    }, [])
 
     const logout = () => {
-        localStorage.clear()            //清楚数据
-        message.success('退出成功，即将返回登陆页')
-        setTimeout(()=>{navigate('/login')},1500)
+        localStorage.clear()            //清除数据
+        message.success('退出成功，即将返回登录页')
+        setTimeout(() => { navigate('/login') }, 1500)
     }
 
     const menu = (
@@ -39,20 +39,20 @@ export default function Header() {
                 {
                     type: Divider
                 },
-                {   
-                    label:(
-                        <span onClick={logout}>退出登录</span>    
+                {
+                    label: (
+                        <span onClick={logout}>退出登录</span>
                     )
-                    
+
                 },
             ]}
         />
     );
 
-    return(
+    return (
         <header>
             <div className="logo">
-                <img src={logoImg} alt="" className="logoimg"/>
+                <img src={logoImg} alt="" className="logoimg" />
                 <img src="http://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/selectcourse.png" className="logoimg" alt="" />
             </div>
             <div className="right">
