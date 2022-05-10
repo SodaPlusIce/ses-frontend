@@ -1,6 +1,6 @@
 import React from 'react'
 import './less/means.less'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button} from 'antd';
 
 export default function List() {
     return (

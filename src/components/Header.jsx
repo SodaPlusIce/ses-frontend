@@ -4,6 +4,8 @@ import { CaretDownOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import defaultAvatar from '../assets/defaultAvatar.png'
 
+const logoImg = "http://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/logo.png"
+
 export default function Header() {
     const navigate = useNavigate()
     const [avatar, setAvatar] = useState(defaultAvatar)
@@ -49,7 +51,10 @@ export default function Header() {
 
     return(
         <header>
-            <span style={{background: "pink"}}><img src="https://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/logo.png" alt="" className="logo" /></span>
+            <div className="logo">
+                <img src={logoImg} alt="" className="logoimg"/>
+                <img src="http://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/selectcourse.png" className="logoimg" alt="" />
+            </div>
             <div className="right">
                 <Dropdown overlay={menu}>
                     <a onClick={e => e.preventDefault()} className="dropdown" >

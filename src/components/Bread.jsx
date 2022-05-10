@@ -9,14 +9,8 @@ export default function Bread() {
 
     useEffect(()=>{
         switch(pathname) {
-            case "/listlist":
-                setbreadName('查看文章列表list')
-                break
-            case "/listtable":
-                setbreadName('查看文章列表table')
-                break
-            case "/edit":
-                setbreadName('文章编辑')
+            case "/list":
+                setbreadName('查看可选课程')
                 break
             case "/means":
                 setbreadName('修改资料')
