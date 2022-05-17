@@ -12,7 +12,7 @@ export default function Header() {
     const [username, setUsername] = useState('游客')
 
     useEffect(() => {
-        let username1 = localStorage.getItem('username')
+        let username1 = localStorage.getItem('userName')
         let avatar1 = 'http://47.93.114.103:6688/' + localStorage.getItem('avatar')
         if (username1) {
             setUsername(username1)
@@ -25,7 +25,7 @@ export default function Header() {
     const logout = () => {
         localStorage.clear()            //清除数据
         message.success('退出成功，即将返回登录页')
-        setTimeout(() => { navigate('/login') }, 1500)
+        setTimeout(() => { navigate('/login') }, 500)
     }
 
     const menu = (

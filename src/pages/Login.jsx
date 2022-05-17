@@ -1,4 +1,4 @@
-import React from 'react'
+import {React, useState} from 'react'
 import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,6 +8,8 @@ import { LoginApi } from '../request/api';
 
 const logoImg = "http://coseu-nanjing.oss-cn-nanjing.aliyuncs.com/ses/logo.png"
 export default function Login() {
+
+    // const [userType, setUserType] = useState('')
 
     const navigate = useNavigate()
     const onFinish = (values) => {
@@ -25,22 +27,32 @@ export default function Login() {
                 // localStorage.setItem('cms-token', res.data['cms-token'])
                 // localStorage.setItem('editable', res.data.editable)
                 // localStorage.setItem('player', res.data.player)
-                // localStorage.setItem('username', res.data.username)
-                // 根据res内容判断用户类型，localStorage存储
-                // ...
-                // 跳转
+                localStorage.setItem('userName', res.data.userName)
+                let userType = res.data.userType
+                if(userType === "学生")
+                {
+                    localStorage.setItem('auth', 0)
+                }
+                if(userType === "教师")
+                {
+                    localStorage.setItem('auth', 1)
+                }
+
                 setTimeout(() => {
-                    navigate('/')
-                }, 1500)
+                    if(userType === "学生")
+                        navigate('/')
+                    if(userType === "教师")
+                        navigate('/teacher')
+                }, 500)
             } else {
                 message.error(res.message)
             }
         })
     };
-    console.log(LoginApi({
-        userNumber: "s1",
-        userPassword: "123",
-    }))
+    // console.log(LoginApi({
+    //     userNumber: "s1",
+    //     userPassword: "123",
+    // }))
 
     return (
         <div className="login">

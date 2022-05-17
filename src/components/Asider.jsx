@@ -36,12 +36,13 @@ export default function Asider() {
     const location = useLocation()
     const navigate = useNavigate()
     const [defaultkey, setdefaultkey] = useState("")
-    // const auth=localStorage.getItem('auth');//获取用户类型，登录时已经本地存储 
+    const auth=localStorage.getItem('auth');//获取用户类型，登录时已经本地存储 
 
     useEffect(() => {
         let path = location.pathname
         setdefaultkey(path.split('/')[1])
     }, [])
+    // console.log(defaultkey)
 
     const onClick = (e) => {
         setdefaultkey(e.key)
@@ -58,8 +59,8 @@ export default function Asider() {
             selectedKeys={[defaultkey]}
             mode="inline"
             theme="dark"
-            // items={items[auth]}//0学生1教师2教务处
-            items={items[2]}//调试用
+            items={items[auth]}//0学生1教师2教务处
+            // items={items[2]}//调试用
         />
     );
 }
