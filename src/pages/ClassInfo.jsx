@@ -33,6 +33,7 @@ class App extends React.Component {
             <>
                 <div>1-16周&nbsp;&nbsp;周二6-7&nbsp;&nbsp;教1-302 </div>
                 <div>1-16周&nbsp;&nbsp;周四1-2&nbsp;&nbsp;教1-302 </div>
+                {/* {this.props.data} */}
             </>
         );
 

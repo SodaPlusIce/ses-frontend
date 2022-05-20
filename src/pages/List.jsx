@@ -43,6 +43,12 @@ export default function List() {
             render: text => <p>{text}</p>
         },
         {
+            title: '课程学分',
+            dataIndex: 'courseCredit',
+            key: 'courseCredit',
+            render: text => <p>{text}</p>
+        },
+        {
             title: '已选人数',
             dataIndex: 'courseStudentNumber',
             key: 'courseStudentNumber',
@@ -68,7 +74,7 @@ export default function List() {
                     <Space size="right">
                         <Button type='primary' onClick={() => console.log(text.key)}>选课</Button>
                         <Button type='danger' style={{ left: '15px' }} onClick={() => console.log(text.key)}>退选</Button>
-                        <ClassInfo></ClassInfo>
+                        <ClassInfo data={arr}></ClassInfo>
                     </Space >
                 )
             },
