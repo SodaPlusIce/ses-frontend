@@ -10,3 +10,5 @@ export const ListApi = (params) => request.post('/student/showCourses', params)
 export const SelectCourseApi = (params) => request.post('/student/selectCourse', params)
 
 export const DropCourseApi = (params) => request.post('/student/dropCourse', params)
+// 教师添加课程
+export const AddCourseApi = (params) => request.post('/teacher/addCourse', params)

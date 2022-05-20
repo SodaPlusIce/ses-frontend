@@ -1,13 +1,46 @@
 import React from 'react'
 import '../less/means.less'
-import { Form, Input, Button, InputNumber, Select, TimePicker } from 'antd';
+import { Form, Input, Button, InputNumber, Select, TimePicker, message } from 'antd';
 import moment from 'moment';
+import { AddCourseApi } from '../../request/api';
+import { useNavigate } from 'react-router-dom';
 
 const { Option } = Select;
 
 const format = "HH:mm"
 
+
 export default function List() {
+
+    const navigate = useNavigate()
+
+    const onFinish = (values) => {
+        AddCourseApi({
+            courseTeacherId: localStorage.getItem('userId'),
+            courseName: values.courseName,
+            courseCredit: values.courseCredit,
+            courseMaxStudentNumber: values.maxStudentNum,
+            courseTime:[
+                {
+                    courseLocation: values.classroom,
+                    classWeek: values.weekTime,
+                    classStartTime: moment(values.startTime).format("HH:mm"),
+                    classEndTime: moment(values.endTime).format("HH:mm"),
+                    classNumber: 1
+                },
+            ]
+        }).then(res => {
+            // console.log(res)
+            if(res.errorCode === 0){
+                message.success(res.message)
+            }
+            navigate("/teacher/list")
+        })
+    }
+
+    // const onFinishFailed = (errorInfo) => {
+    //     console.log(errorInfo)
+    // }
     return (
         <div className='means'>
             <Form
@@ -19,6 +52,8 @@ export default function List() {
                     span: 16,
                 }}
                 autoComplete="off"
+                onFinish={onFinish}
+                // onFinishFailed={onFinishFailed}
             >
                 <Form.Item
                     label="课程名"
@@ -28,87 +63,64 @@ export default function List() {
                     <Input style={{ width: 360 }} />
                 </Form.Item>
 
-                {/* <Form.Item
-                    label="课程编号"
-                    name="courseNumber"
-                    rules={[{ required: true, message: '请输入课程编号!' }]}
-                >
-                    <Input style={{ width: 360 }} />
-                </Form.Item> */}
-
                 <Form.Item
                     label="课程容量"
                     name="maxStudentNum"
                     rules={[{ required: true, message: '请设置课程容量!' }]}
-                ><InputNumber min={10} max={150} defaultValue={50} /></Form.Item>
-
+                >
+                    <InputNumber min={10} max={150} />
+                    {/* <Input></Input> */}
+                </Form.Item>
+                <Form.Item
+                    label="课程学分"
+                    name="courseCredit"
+                    rules={[{required: true, message: "请设置课程学分!"}]}
+                >
+                    <InputNumber min={0.25} max={6}></InputNumber>
+                </Form.Item>
                 <Form.Item
                     label="课程时间"
                     name="courseDay"
-                    rules={[{ required: true, message: '请设置课程信息!' }]}
                 >
-                    <Select defaultValue="one" style={{ width: 120 }} >
-                        <Option value="one">周一</Option>
-                        <Option value="two">周二</Option>
-                        <Option value="three" >周三</Option>
-                        <Option value="four">周四</Option>
-                        <Option value="five">周五</Option>
-                        <Option value="six">周六</Option>
-                        <Option value="seven">周日</Option>
-                    </Select>
+                    <Form.Item 
+                    name="weekTime"
+                    style={{ display: "inline-block" }} 
+                    rules={[{ required: true, message: '请设置课程时间!' }]}
+                    >
+                        <Select style={{ width: 120 }} >
+                            <Option value="one">周一</Option>
+                            <Option value="two">周二</Option>
+                            <Option value="three" >周三</Option>
+                            <Option value="four">周四</Option>
+                            <Option value="five">周五</Option>
+                            <Option value="six">周六</Option>
+                            <Option value="seven">周日</Option>
+                        </Select>
+                    </Form.Item>
                     &nbsp;&nbsp;上课时间：
                     {/* <InputNumber min={1} max={13} defaultValue={1} /> */}
-                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
+                    <Form.Item 
+                    name="startTime"
+                    style={{ display: "inline-block" }} 
+                    rules={[{ required: true, message: '请设置课程时间!' }]}>
+                        <TimePicker format={format} />
+                    </Form.Item>
                     &nbsp;~&nbsp;
                     {/* <InputNumber min={1} max={13} defaultValue={13} /> */}
-                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
+                    <Form.Item
+                    name="endTime" 
+                    style={{ display: "inline-block" }} 
+                    rules={[{ required: true, message: '请设置课程时间!' }]}>
+                        <TimePicker format={format} />
+                    </Form.Item>
                     &nbsp;教室：
-                    <Input style={{ width: '100px' }} />
+                    <Form.Item
+                    name="classroom" 
+                    style={{ display: "inline-block" }} 
+                    rules={[{ required: true, message: '请设置课程时间!' }]}>
+                        <Input style={{ width: '100px' }} />
+                    </Form.Item>
                 </Form.Item>
-
-                <Form.Item
-                    label="课程时间（可选）"
-                    name="courseDay"
-                >
-                    <Select defaultValue="one" style={{ width: 120 }} >
-                        <Option value="one">周一</Option>
-                        <Option value="two">周二</Option>
-                        <Option value="three" >周三</Option>
-                        <Option value="four">周四</Option>
-                        <Option value="five">周五</Option>
-                        <Option value="six">周六</Option>
-                        <Option value="seven">周日</Option>
-                    </Select>
-                    &nbsp;&nbsp;上课时间：
-                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
-                    &nbsp;~&nbsp;
-                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
-                    &nbsp;教室：
-                    <Input style={{ width: '100px' }} />
-                </Form.Item>
-
-                <Form.Item
-                    label="课程时间（可选）"
-                    name="courseDay"
-                >
-                    <Select defaultValue="one" style={{ width: 120 }} >
-                        <Option value="one">周一</Option>
-                        <Option value="two">周二</Option>
-                        <Option value="three" >周三</Option>
-                        <Option value="four">周四</Option>
-                        <Option value="five">周五</Option>
-                        <Option value="six">周六</Option>
-                        <Option value="seven">周日</Option>
-                    </Select>
-                    &nbsp;&nbsp;上课时间：
-                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
-                    &nbsp;~&nbsp;
-                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
-                    &nbsp;教室：
-                    <Input style={{ width: '100px' }} />
-                </Form.Item>
-
-
                 <Form.Item
                     wrapperCol={{
                         offset: 8,

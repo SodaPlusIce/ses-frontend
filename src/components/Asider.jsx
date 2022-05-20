@@ -38,18 +38,19 @@ export default function Asider() {
     const navigate = useNavigate()
     const auth = localStorage.getItem("auth");//获取用户类型，登录时已经本地存储 
     let temp = items[auth][0].key
-    console.log(temp)
     const [defaultkey, setdefaultkey] = useState(temp)
     // setdefaultkey(temp)
     
-    // useEffect(() => {
-    //     let path = location.pathname
-        
-    // }, [])
+    useEffect(() => {
+        let path = location.pathname
+        path = path.slice(1,path.length)
+        console.log(path)
+        setdefaultkey(path)
+    }, [])
     // console.log(defaultkey)
 
     const onClick = (e) => {
-        console.log(e.key)
+        // console.log(e.key)
         setdefaultkey(e.key)
         navigate('/' + e.key)
     };
