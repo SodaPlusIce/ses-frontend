@@ -1,59 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import '../less/listtable.less'
-import { Table, Button, Space } from 'antd';
+import { Table, Button, message } from 'antd';
+import { TeacherListApi } from '../../request/api';
 import monment from 'moment'
 import ClassInfo from '../ClassInfo'
 
 export default function List() {
-
-    const [arr, setarr] = useState([
-        {
-            key: 'c1',
-            courseId: 'c1',
-            courseName: '软件工程',
-            courseCapcity: '0/50',
-            courseTeacher: '李四',
-            courseState: "已审核"
-        }
-    ])
+    const [arr, setarr] = useState([])
     // 分页
     const [pagination, setPagination] = useState({ current: 1, pageSize: 10, total: 10 })
-    // const getArticleList = (current, pageSize) => {
-    //     ArticleListApi({
-    //         num: current,
-    //         count: pageSize
-    //     }).then(res => {
-    //         // console.log(res)
-    //         if (res.errCode === 0) {
-    //             let {num, total, count} = res.data
-    //             setPagination({
-    //                 current: num,
-    //                 pageSize: count,
-    //                 total
-    //             })
-    //             let newArr = JSON.parse(JSON.stringify(res.data.arr));
+    useEffect(() => {
+        TeacherListApi({
+            teacherId: localStorage.getItem('userId'),
+            pageNo: 1,
+            pageSize: 10
+        }).then(res => {
 
-    //             let myarr = []
-    //             /*
-    //             key = id
-    //             标签结构赋予属性
-    //             */
-    //             newArr.map(item => {
-    //                 let obj = {
-    //                     key: item.id,
-    //                     date: monment(item.date).format("YY-MM-DD hh:mm:ss"),
-    //                     mytitle: <MyTitle title={item.title} subtitle={item.subTitle} id={item.id} />
-    //                 }
-    //                 myarr.push(obj)
-    //             })
-    //             // console.log(myarr)
-    //             setarr(myarr)
-    //         }
-    //     })
-    // }
-    // useEffect(()=>{
-    //     getArticleList(pagination.current, pagination.pageSize);
-    // },[])
+            let a = res.data;
+            for (var i = 0; i < a.length; i++) {
+                a[i].key = a[i].courseId;
+            }
+            let b = a.filter((e) => {
+                return 1 - e.isSelected
+            })
+            setarr(b)
+        })
+    }, [])
     const columns = [
         {
             title: '课程名称',
@@ -64,7 +36,6 @@ export default function List() {
                     <div>{text}</div>
                 )
             }
-
         },
         {
             title: '课程号',
@@ -73,22 +44,28 @@ export default function List() {
             render: text => <p>{text}</p>
         },
         {
+            title: '课程学分',
+            dataIndex: 'courseCredit',
+            key: 'courseCredit',
+            render: text => <p>{text}</p>
+        },
+        {
+            title: '已选人数',
+            dataIndex: 'courseStudentNumber',
+            key: 'courseStudentNumber',
+            render: text => <p>{text}</p>
+        },
+        {
             title: '课程容量',
-            dataIndex: 'courseCapcity',
-            key: 'courseCapcity',
+            dataIndex: 'courseMaxStudentNumber',
+            key: 'courseMaxStudentNumber',
             render: text => <p>{text}</p>
         },
         {
-            title: '教师',
-            dataIndex: 'courseTeacher',
-            key: 'courseTeacher',
-            render: text => <p>{text}</p>
-        },
-        {
-            title: '状态',
-            dataIndex: 'courseState',
-            key: 'courseState',
-            render: text => <p>{text}</p>
+            title: '审核状态',
+            dataIndex: 'coursePass',
+            key: 'coursePass',
+            render: text => <p>{text == "0" ? "待审核" : (text == "1" ? "已通过" : "未通过")}</p>
         },
         {
             title: '操作',
@@ -96,9 +73,8 @@ export default function List() {
             render: text => {
                 return (
                     <div>
-                        <Button type='danger' style={{ left: '15px' }} onClick={() => console.log(text.key)}>删除</Button>
                         <ClassInfo></ClassInfo>
-                    </div >
+                    </div>
                 )
             },
         },
@@ -107,7 +83,6 @@ export default function List() {
     //分页
     const pageChange = (arg) => {
         console.log(arg)
-        // getArticleList(arg.current, arg.pageSize);
     }
 
     return (

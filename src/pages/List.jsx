@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './less/listtable.less'
 import { Table, Button, message } from 'antd';
-import { ListApi, SelectCourseApi } from '../request/api';
+import { ListApi, SelectCourseApi } from '.././request/api';
 import monment from 'moment'
 import ClassInfo from './ClassInfo'
 
