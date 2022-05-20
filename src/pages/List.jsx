@@ -7,19 +7,9 @@ import ClassInfo from './ClassInfo'
 
 export default function List() {
 
-    const [arr, setarr] = useState([
-        {
-            key: 'c1',
-            courseId: 'c1',
-            courseName: '软件工程',
-            courseCapcity: '0/50',
-            courseTeacher: '李四',
-            courseState: "待审核"
-        }
-    ])
+    const [arr, setarr] = useState([])
     // 分页
     const [pagination, setPagination] = useState({ current: 1, pageSize: 10, total: 10 })
-
     useEffect(() => {
         ListApi({
             studentId: localStorage.getItem('userId'),
@@ -27,34 +17,14 @@ export default function List() {
             pageSize: 10
         }).then(res => {
             console.log(res)
-
-            // if (res.errorCode === 0) {
-            //     message.success(res.message)
-            //     //存储数据
-            //     // localStorage.setItem('avatar', res.data.avatar)
-            //     // localStorage.setItem('cms-token', res.data['cms-token'])
-            //     // localStorage.setItem('editable', res.data.editable)
-            //     // localStorage.setItem('player', res.data.player)
-            //     localStorage.setItem('userName', res.data.userName)
-            //     let userType = res.data.userType
-            //     if (userType === "学生") {
-            //         localStorage.setItem('auth', 0)
-            //     }
-            //     if (userType === "教师") {
-            //         localStorage.setItem('auth', 1)
-            //     }
-
-            //     setTimeout(() => {
-            //         if (userType === "学生")
-            //             navigate('/')
-            //         if (userType === "教师")
-            //             navigate('/teacher')
-            //     }, 500)
-            // } else {
-            //     message.error(res.message)
-            // }
+            let a = res.data;
+            for (var i = 0; i < a.length; i++) {
+                a[i].key = a[i].courseId;
+            }
+            setarr(a)
         })
     }, [])
+    console.log(arr);
     const columns = [
         {
             title: '课程名称',
@@ -65,7 +35,6 @@ export default function List() {
                     <div>{text}</div>
                 )
             }
-
         },
         {
             title: '课程号',
@@ -74,15 +43,21 @@ export default function List() {
             render: text => <p>{text}</p>
         },
         {
+            title: '已选人数',
+            dataIndex: 'courseStudentNumber',
+            key: 'courseStudentNumber',
+            render: text => <p>{text}</p>
+        },
+        {
             title: '课程容量',
-            dataIndex: 'courseCapcity',
-            key: 'courseCapcity',
+            dataIndex: 'courseMaxStudentNumber',
+            key: 'courseMaxStudentNumber',
             render: text => <p>{text}</p>
         },
         {
             title: '教师',
-            dataIndex: 'courseTeacher',
-            key: 'courseTeacher',
+            dataIndex: 'teacherName',
+            key: 'teacherName',
             render: text => <p>{text}</p>
         },
         {
