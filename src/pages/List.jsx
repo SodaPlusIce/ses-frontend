@@ -1,20 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './less/listtable.less'
 import { Table, Button, Space } from 'antd';
-import { ArticleListApi } from '../request/api';
+import { ListApi } from '../request/api';
 import monment from 'moment'
 import ClassInfo from './ClassInfo'
-
-// function MyTitle(props) {
-//     return (
-//         <div>
-//             <a href={
-//                 "http://codesohigh.com:8765/article/2035"+props.id
-//             } className='list_title' target="_blank" >{props.title}</a>
-//             <p style={{color: '#999'}}>{props.subtitle}</p>
-//         </div>
-//     )
-// }
 
 export default function List() {
 
@@ -30,42 +19,42 @@ export default function List() {
     ])
     // 分页
     const [pagination, setPagination] = useState({ current: 1, pageSize: 10, total: 10 })
-    // const getArticleList = (current, pageSize) => {
-    //     ArticleListApi({
-    //         num: current,
-    //         count: pageSize
-    //     }).then(res => {
-    //         // console.log(res)
-    //         if (res.errCode === 0) {
-    //             let {num, total, count} = res.data
-    //             setPagination({
-    //                 current: num,
-    //                 pageSize: count,
-    //                 total
-    //             })
-    //             let newArr = JSON.parse(JSON.stringify(res.data.arr));
 
-    //             let myarr = []
-    //             /*
-    //             key = id
-    //             标签结构赋予属性
-    //             */
-    //             newArr.map(item => {
-    //                 let obj = {
-    //                     key: item.id,
-    //                     date: monment(item.date).format("YY-MM-DD hh:mm:ss"),
-    //                     mytitle: <MyTitle title={item.title} subtitle={item.subTitle} id={item.id} />
-    //                 }
-    //                 myarr.push(obj)
-    //             })
-    //             // console.log(myarr)
-    //             setarr(myarr)
-    //         }
-    //     })
-    // }
-    // useEffect(()=>{
-    //     getArticleList(pagination.current, pagination.pageSize);
-    // },[])
+    useEffect(() => {
+        ListApi({
+            studentId: localStorage.getItem('userId'),
+            pageNo: 1,
+            pageSize: 10
+        }).then(res => {
+            console.log(res)
+
+            // if (res.errorCode === 0) {
+            //     message.success(res.message)
+            //     //存储数据
+            //     // localStorage.setItem('avatar', res.data.avatar)
+            //     // localStorage.setItem('cms-token', res.data['cms-token'])
+            //     // localStorage.setItem('editable', res.data.editable)
+            //     // localStorage.setItem('player', res.data.player)
+            //     localStorage.setItem('userName', res.data.userName)
+            //     let userType = res.data.userType
+            //     if (userType === "学生") {
+            //         localStorage.setItem('auth', 0)
+            //     }
+            //     if (userType === "教师") {
+            //         localStorage.setItem('auth', 1)
+            //     }
+
+            //     setTimeout(() => {
+            //         if (userType === "学生")
+            //             navigate('/')
+            //         if (userType === "教师")
+            //             navigate('/teacher')
+            //     }, 500)
+            // } else {
+            //     message.error(res.message)
+            // }
+        })
+    }, [])
     const columns = [
         {
             title: '课程名称',

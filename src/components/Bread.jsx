@@ -12,12 +12,15 @@ export default function Bread() {
             case "/list":
                 setbreadName('查看可选课程')
                 break
+            case "/courses":
+                setbreadName('我的课表')
+                break
             case "/means":
                 setbreadName('修改资料')
                 break
 
             case "/teacher/list":
-                setbreadName('我的课程')
+                setbreadName('所授课程')
                 break
             case "/teacher/addCourse":
                 setbreadName('增加课程')

@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import { React, useState } from 'react'
 import { Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom'
@@ -13,12 +13,11 @@ export default function Login() {
 
     const navigate = useNavigate()
     const onFinish = (values) => {
-        // console.log(values)
         LoginApi({
             userId: values.username,
             userPassword: values.password,
         }).then(res => {
-            console.log(res)
+            // console.log(res)
 
             if (res.errorCode === 0) {
                 message.success(res.message)
@@ -26,22 +25,20 @@ export default function Login() {
                 // localStorage.setItem('avatar', res.data.avatar)
                 // localStorage.setItem('cms-token', res.data['cms-token'])
                 // localStorage.setItem('editable', res.data.editable)
-                // localStorage.setItem('player', res.data.player)
+                localStorage.setItem('userId', res.data.userId)
                 localStorage.setItem('userName', res.data.userName)
                 let userType = res.data.userType
-                if(userType === "学生")
-                {
+                if (userType === "学生") {
                     localStorage.setItem('auth', 0)
                 }
-                if(userType === "教师")
-                {
+                if (userType === "教师") {
                     localStorage.setItem('auth', 1)
                 }
 
                 setTimeout(() => {
-                    if(userType === "学生")
+                    if (userType === "学生")
                         navigate('/')
-                    if(userType === "教师")
+                    if (userType === "教师")
                         navigate('/teacher')
                 }, 500)
             } else {
@@ -49,10 +46,6 @@ export default function Login() {
             }
         })
     };
-    // console.log(LoginApi({
-    //     userNumber: "s1",
-    //     userPassword: "123",
-    // }))
 
     return (
         <div className="login">
