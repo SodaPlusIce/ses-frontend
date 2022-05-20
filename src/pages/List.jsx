@@ -15,6 +15,7 @@ export default function List() {
             pageNo: 1,
             pageSize: 10
         }).then(res => {
+
             let a = res.data;
             for (var i = 0; i < a.length; i++) {
                 a[i].key = a[i].courseId;

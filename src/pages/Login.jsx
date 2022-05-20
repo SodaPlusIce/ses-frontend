@@ -17,7 +17,7 @@ export default function Login() {
             userId: values.username,
             userPassword: values.password,
         }).then(res => {
-            // console.log(res)
+            console.log(res)
 
             if (res.errorCode === 0) {
                 message.success(res.message)
@@ -34,12 +34,16 @@ export default function Login() {
                 if (userType === "教师") {
                     localStorage.setItem('auth', 1)
                 }
-
+                if(userType === "教务处") {
+                    localStorage.setItem('auth', 2)
+                }
                 setTimeout(() => {
                     if (userType === "学生")
                         navigate('/')
                     if (userType === "教师")
                         navigate('/teacher')
+                    if(userType === "教务处")
+                        navigate('/jwc')
                 }, 500)
             } else {
                 message.error(res.message)
