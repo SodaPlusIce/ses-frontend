@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './less/listtable.less'
-import { Table, Button, Space } from 'antd';
-import { ListApi } from '../request/api';
+import { Table, Button, Space, message } from 'antd';
+import { ListApi, SelectCourseApi } from '../request/api';
 import monment from 'moment'
 import ClassInfo from './ClassInfo'
 
 export default function List() {
-
     const [arr, setarr] = useState([])
     // 分页
     const [pagination, setPagination] = useState({ current: 1, pageSize: 10, total: 10 })
@@ -16,15 +15,16 @@ export default function List() {
             pageNo: 1,
             pageSize: 10
         }).then(res => {
-            console.log(res)
             let a = res.data;
             for (var i = 0; i < a.length; i++) {
                 a[i].key = a[i].courseId;
             }
-            setarr(a)
+            let b = a.filter((e) => {
+                return 1 - e.isSelected
+            })
+            setarr(b)
         })
     }, [])
-    console.log(arr);
     const columns = [
         {
             title: '课程名称',
@@ -72,9 +72,21 @@ export default function List() {
             render: text => {
                 return (
                     <Space size="right">
-                        <Button type='primary' onClick={() => console.log(text.key)}>选课</Button>
-                        <Button type='danger' style={{ left: '15px' }} onClick={() => console.log(text.key)}>退选</Button>
-                        <ClassInfo data={arr}></ClassInfo>
+                        <Button type='primary' onClick={() => {
+                            SelectCourseApi({
+                                studentId: localStorage.getItem('userId'),
+                                courseId: text.courseId
+                            }).then(res => {
+                                console.log(res)
+                                if (res.errorCode == 0) {
+                                    message.success(res.message);
+                                    window.location.reload();
+                                } else if (res.errorCode == 1) {
+                                    message.success(res.message);
+                                }
+                            })
+                        }}>选课</Button>
+                        <ClassInfo></ClassInfo>
                     </Space >
                 )
             },

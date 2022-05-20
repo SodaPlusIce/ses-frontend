@@ -18,7 +18,7 @@ function getItem(label, key, icon, children, type) {
 const items = [
     [//学生
         getItem('查看可选课程', 'list', <ReadOutlined />),
-        getItem('我的课表', 'courses', <ReadOutlined />),
+        getItem('已选课程', 'courses', <ReadOutlined />),
         getItem('修改资料', 'means', <DatabaseOutlined />),
     ],
     [//教师
@@ -60,8 +60,8 @@ export default function Asider() {
             selectedKeys={[defaultkey]}
             mode="inline"
             theme="dark"
-            // items={items[auth]}//0学生1教师2教务处
-            items={items[0]}//调试用
+            items={items[auth]}//0学生1教师2教务处
+        // items={items[0]}//调试用
         />
     );
 }

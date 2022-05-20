@@ -7,3 +7,6 @@ export const LoginApi = (params) => request.post('/login', params)
 
 export const ListApi = (params) => request.post('/student/showCourses', params)
 
+export const SelectCourseApi = (params) => request.post('/student/selectCourse', params)
+
+export const DropCourseApi = (params) => request.post('/student/dropCourse', params)
