@@ -27,6 +27,10 @@ export default function List() {
             pageSize: 10
         }).then(res => {
             console.log(res)
+            if(res.errorCode === 0) {
+                let course = Object()
+                
+            }
 
             // if (res.errorCode === 0) {
             //     message.success(res.message)

@@ -17,7 +17,7 @@ export default function Register() {
             username: values.username,
             password: values.password
         }).then(res => {
-            // console.log(res)
+            console.log(res)
             if(res.errCode === 0){
                 message.success('注册成功');
                 navigate('/login')

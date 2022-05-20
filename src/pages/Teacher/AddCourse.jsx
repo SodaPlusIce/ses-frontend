@@ -1,8 +1,11 @@
 import React from 'react'
 import '../less/means.less'
-import { Form, Input, Button, InputNumber, Select } from 'antd';
+import { Form, Input, Button, InputNumber, Select, TimePicker } from 'antd';
+import moment from 'moment';
 
 const { Option } = Select;
+
+const format = "HH:mm"
 
 export default function List() {
     return (
@@ -25,13 +28,13 @@ export default function List() {
                     <Input style={{ width: 360 }} />
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                     label="课程编号"
                     name="courseNumber"
                     rules={[{ required: true, message: '请输入课程编号!' }]}
                 >
                     <Input style={{ width: 360 }} />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                     label="课程容量"
@@ -54,9 +57,11 @@ export default function List() {
                         <Option value="seven">周日</Option>
                     </Select>
                     &nbsp;&nbsp;上课时间：
-                    <InputNumber min={1} max={13} defaultValue={1} />
+                    {/* <InputNumber min={1} max={13} defaultValue={1} /> */}
+                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
                     &nbsp;~&nbsp;
-                    <InputNumber min={1} max={13} defaultValue={13} />
+                    {/* <InputNumber min={1} max={13} defaultValue={13} /> */}
+                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
                     &nbsp;教室：
                     <Input style={{ width: '100px' }} />
                 </Form.Item>
@@ -75,9 +80,9 @@ export default function List() {
                         <Option value="seven">周日</Option>
                     </Select>
                     &nbsp;&nbsp;上课时间：
-                    <InputNumber min={1} max={13} defaultValue={1} />
+                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
                     &nbsp;~&nbsp;
-                    <InputNumber min={1} max={13} defaultValue={13} />
+                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
                     &nbsp;教室：
                     <Input style={{ width: '100px' }} />
                 </Form.Item>
@@ -96,9 +101,9 @@ export default function List() {
                         <Option value="seven">周日</Option>
                     </Select>
                     &nbsp;&nbsp;上课时间：
-                    <InputNumber min={1} max={13} defaultValue={1} />
+                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
                     &nbsp;~&nbsp;
-                    <InputNumber min={1} max={13} defaultValue={13} />
+                    <TimePicker defaultValue={moment('12:08', format)} format={format} />
                     &nbsp;教室：
                     <Input style={{ width: '100px' }} />
                 </Form.Item>

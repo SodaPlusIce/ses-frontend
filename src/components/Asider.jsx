@@ -43,7 +43,7 @@ export default function Asider() {
         let path = location.pathname
         setdefaultkey(path.split('/')[1])
     }, [])
-    // console.log(defaultkey)
+    console.log(defaultkey)
 
     const onClick = (e) => {
         setdefaultkey(e.key)
@@ -60,8 +60,8 @@ export default function Asider() {
             selectedKeys={[defaultkey]}
             mode="inline"
             theme="dark"
-            // items={items[auth]}//0学生1教师2教务处
-            items={items[0]}//调试用
+            items={items[auth]}//0学生1教师2教务处
+            // items={items[0]}//调试用
         />
     );
 }

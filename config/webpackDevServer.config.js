@@ -102,7 +102,7 @@ module.exports = function (proxy, allowedHost) {
     // `proxy` is run between `before` and `after` `webpack-dev-server` hooks
     proxy: {
       '/api': {
-        target: 'http://1.13.253.88:8080', // 后台服务地址以及端口号
+        target: 'http://1.13.253.88:8081', // 后台服务地址以及端口号
         // target: 'http://127.0.0.1:8081', // 后台服务地址以及端口号
         changeOrigin: true, //是否跨域
         pathRewrite: { '^/api': '/' }
