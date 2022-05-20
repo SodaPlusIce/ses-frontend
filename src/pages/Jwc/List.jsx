@@ -95,11 +95,11 @@ export default function List() {
             key: 'action',
             render: text => {
                 return (
-                    <Space size="right" style={{ top: '-5px' }}>
+                    <div>
                         <Button type='primary' style={{ left: '0px' }} onClick={() => console.log(text.key)}>通过审核</Button>
                         <Button type='danger' style={{ left: '15px' }} onClick={() => console.log(text.key)}>删除</Button>
                         <ClassInfo></ClassInfo>
-                    </Space >
+                    </div >
                 )
             },
         },

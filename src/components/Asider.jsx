@@ -38,18 +38,16 @@ export default function Asider() {
     const navigate = useNavigate()
     const auth = localStorage.getItem("auth");//获取用户类型，登录时已经本地存储 
     let temp = items[auth][0].key
-    console.log(temp)
     const [defaultkey, setdefaultkey] = useState(temp)
     // setdefaultkey(temp)
-    
+
     // useEffect(() => {
     //     let path = location.pathname
-        
+
     // }, [])
     // console.log(defaultkey)
 
     const onClick = (e) => {
-        console.log(e.key)
         setdefaultkey(e.key)
         navigate('/' + e.key)
     };
@@ -65,7 +63,7 @@ export default function Asider() {
             mode="inline"
             theme="dark"
             items={items[auth]}//0学生1教师2教务处
-            // items={items[0]}//调试用
+        // items={items[0]}//调试用
         />
     );
 }
