@@ -18,7 +18,7 @@ function getItem(label, key, icon, children, type) {
 const items = [
     [//学生
         getItem('查看可选课程', 'list', <ReadOutlined />),
-        getItem('我的课表', 'courses', <ReadOutlined />),
+        getItem('已选课程', 'courses', <ReadOutlined />),
         getItem('修改资料', 'means', <DatabaseOutlined />),
     ],
     [//教师
@@ -28,6 +28,7 @@ const items = [
     ],
     [//教务处
         getItem('所有课程信息', 'jwc/list', <ReadOutlined />),
+        getItem('教室课程信息', 'jwc/roomList', <ReadOutlined />),
         getItem('修改资料', 'jwc/means', <DatabaseOutlined />),
     ]
 ];

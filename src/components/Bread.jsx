@@ -32,6 +32,9 @@ export default function Bread() {
             case "/jwc/list":
                 setbreadName('所有课程信息')
                 break
+            case "/jwc/roomList":
+                setbreadName('教室课程信息')
+                break
             case "/jwc/means":
                 setbreadName('修改资料')
                 break
