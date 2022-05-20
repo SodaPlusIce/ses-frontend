@@ -18,7 +18,7 @@ function getItem(label, key, icon, children, type) {
 const items = [
     [//学生
         getItem('查看可选课程', 'list', <ReadOutlined />),
-        getItem('已选课程', 'courses', <ReadOutlined />),
+        getItem('我的课表', 'courses', <ReadOutlined />),
         getItem('修改资料', 'means', <DatabaseOutlined />),
     ],
     [//教师
@@ -36,16 +36,20 @@ const items = [
 export default function Asider() {
     const location = useLocation()
     const navigate = useNavigate()
-    const [defaultkey, setdefaultkey] = useState("")
-    const auth = localStorage.getItem('auth');//获取用户类型，登录时已经本地存储 
-
-    useEffect(() => {
-        let path = location.pathname
-        setdefaultkey(path.split('/')[1])
-    }, [])
-    console.log(defaultkey)
+    const auth = localStorage.getItem("auth");//获取用户类型，登录时已经本地存储 
+    let temp = items[auth][0].key
+    console.log(temp)
+    const [defaultkey, setdefaultkey] = useState(temp)
+    // setdefaultkey(temp)
+    
+    // useEffect(() => {
+    //     let path = location.pathname
+        
+    // }, [])
+    // console.log(defaultkey)
 
     const onClick = (e) => {
+        console.log(e.key)
         setdefaultkey(e.key)
         navigate('/' + e.key)
     };
@@ -61,6 +65,7 @@ export default function Asider() {
             mode="inline"
             theme="dark"
             items={items[auth]}//0学生1教师2教务处
+            // items={items[0]}//调试用
         />
     );
 }

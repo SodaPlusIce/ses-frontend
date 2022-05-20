@@ -39,11 +39,11 @@ export default function Login() {
                 }
                 setTimeout(() => {
                     if (userType === "学生")
-                        navigate('/')
+                        navigate('/list')
                     if (userType === "教师")
-                        navigate('/teacher')
+                        navigate('/teacher/list')
                     if(userType === "教务处")
-                        navigate('/jwc')
+                        navigate('/jwc/list')
                 }, 500)
             } else {
                 message.error(res.message)
