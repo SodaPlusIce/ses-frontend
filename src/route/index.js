@@ -7,6 +7,7 @@ import Means from '../pages/Means'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Courses from '../pages/Courses'
+import RoomList from '../pages/Jwc/RoomList'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
@@ -28,6 +29,7 @@ const BaseRouter = () => (
             <Route path='/jwc' element={<App />}>
                 <Route path='/jwc/list' element={<JwcList />} />
                 <Route path='/jwc/means' element={<Means />} />
+                <Route path='/jwc/roomList' element={<RoomList />} />
             </Route>
         </Routes>
     </Router>

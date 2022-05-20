@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './less/listtable.less'
-import { Table, Button, Space, message } from 'antd';
+import { Table, Button, message } from 'antd';
 import { ListApi, SelectCourseApi } from '../request/api';
 import monment from 'moment'
 import ClassInfo from './ClassInfo'
@@ -72,7 +72,7 @@ export default function List() {
             key: 'action',
             render: text => {
                 return (
-                    <Space size="right">
+                    <div>
                         <Button type='primary' onClick={() => {
                             SelectCourseApi({
                                 studentId: localStorage.getItem('userId'),
@@ -88,7 +88,7 @@ export default function List() {
                             })
                         }}>选课</Button>
                         <ClassInfo></ClassInfo>
-                    </Space >
+                    </div>
                 )
             },
         },
@@ -97,7 +97,6 @@ export default function List() {
     //分页
     const pageChange = (arg) => {
         console.log(arg)
-        // getArticleList(arg.current, arg.pageSize);
     }
 
     return (

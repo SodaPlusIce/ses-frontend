@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './less/listtable.less'
-import { Table, Button, Space, message } from 'antd';
+import { Table, Button, message } from 'antd';
 import { ListApi, DropCourseApi } from '../request/api';
-import monment from 'moment'
 import ClassInfo from './ClassInfo'
 
 export default function List() {
@@ -71,7 +70,7 @@ export default function List() {
             key: 'action',
             render: text => {
                 return (
-                    <Space size="right">
+                    <div>
                         <Button type='danger' style={{ left: '15px' }} onClick={() => {
                             DropCourseApi({
                                 studentId: localStorage.getItem('userId'),
@@ -87,7 +86,7 @@ export default function List() {
                             })
                         }}>退选</Button>
                         <ClassInfo></ClassInfo>
-                    </Space >
+                    </div>
                 )
             },
         },

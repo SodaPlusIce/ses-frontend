@@ -30,7 +30,7 @@ export default function List() {
                 },
             ]
         }).then(res => {
-            // console.log(res)
+            console.log(res)
             if(res.errorCode === 0){
                 message.success(res.message)
             }
