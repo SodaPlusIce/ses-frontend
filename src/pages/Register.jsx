@@ -14,12 +14,15 @@ export default function Register() {
         console.log('Success:', values);
         
         RegisterApi({
-            username: values.username,
-            password: values.password
+            userName: values.username,
+            userPassword: values.password,
+            userType: '学生',
+            userId: values.username,
+            studentClass: '711201'
         }).then(res => {
             console.log(res)
             if(res.errCode === 0){
-                message.success('注册成功');
+                message.success(res.message);
                 navigate('/login')
             }else{
                 message.error(res.message)
